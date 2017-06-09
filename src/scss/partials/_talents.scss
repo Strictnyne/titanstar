@@ -1,0 +1,178 @@
+.talent-calc-container {
+  background: url('../../assets/images/talent-calc-bg.png');
+  border: 1px solid $dark-gray;
+  color: #CFCFCF;
+  margin-top: 10px;
+  max-height: 375px;
+  padding: 20px 19px;
+
+  .talent-calc-container__header {
+    background-color:rgba(255,255,255,0.1 );
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  .talent-calc-container__content {
+    //line-height: 125px;
+    //line-height: 150px;
+    //padding: 50px 0;
+    padding-top: 50px;
+
+    div {
+      display: block;
+      vertical-align: middle;
+      //line-height: normal;
+
+      .talent-path {
+        color: $white;
+        display: table-cell;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 25px;
+        padding-top: 40px;
+        text-transform: uppercase;
+        vertical-align: top;
+
+        .talent-path__1 {
+          margin-bottom: 106px;
+        }
+        //.talent-path__2 {
+        //  margin-top: 31px;
+        //}
+      }
+    }
+  }
+}
+
+#talents {
+  list-style-type: none;
+
+  .talent-image {
+    background: url('../../assets/images/talent-icons-sprite.png') 0px 0px;
+    background-position-y: -50px;
+    border: 5px solid transparent;
+    -moz-border-image: -moz-linear-gradient(top, #4c4c4c 0%, #393939 100%, #494949 100%);
+    -webkit-border-image: -webkit-linear-gradient(top, #4c4c4c 0%, #393939 100%, #494949 100%);
+    border-image: linear-gradient(to bottom, #4c4c4c 0%, #393939 100%, #494949 100%);
+    border-image-slice: 1;
+    height: 50px;
+    width: 50px;
+    z-index: 999;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  li {
+    float: left;
+    height: 125px;
+    text-align: center;
+    /*padding: 35px 30px 0 30px;*/
+    box-sizing: border-box;
+    position: relative;
+    width: 25%;
+
+    &:nth-child(4n+1):before,
+    &:nth-child(4n+2):before,
+    &:nth-child(4n+3):before {
+      background: rgba(255, 255, 255, 0.25);
+      border-bottom: 1px solid $white;
+      border-top: 1px solid $white;
+      content: '';
+      height: 12px;
+      left: 60px;
+      position: absolute;
+      top: 23px;
+      width: 80px;
+      z-index: 998;
+
+
+    }
+
+    .--active {
+      -moz-border-image: -moz-linear-gradient(top, #6faeef 0%, #3b4857 100%, #5e9bd8 100%);
+      -webkit-border-image: -webkit-linear-gradient(top, #6faeef 0%, #3b4857 100%, #5e9bd8 100%);
+      background-position-y: 0;
+      border-image: linear-gradient(to bottom, #6faeef 0%, #3b4857 100%, #5e9bd8 100%);
+      border-image-slice: 1;
+    }
+
+    .talent-image__stacks {
+      @extend .talent-image;
+      background-position-x: 0;
+      &:hover {
+        background-position-y: 0;
+      }
+    }
+    .talent-image__food {
+      @extend .talent-image;
+      background-position-x: -50px;
+      &:hover {
+        background-position-y: 0;
+      }
+    }
+    .talent-image__cake {
+      @extend .talent-image;
+      background-position-x: -100px;
+      &:hover {
+        background-position-y: 0;
+      }
+    }
+    .talent-image__crown {
+      @extend .talent-image;
+      background-position-x: -150px;
+      &:hover {
+        background-position-y: 0;
+      }
+    }
+    .talent-image__boat {
+      @extend .talent-image;
+      background-position-x: -200px;
+      &:hover {
+        background-position-y: 0;
+      }
+    }
+    .talent-image__scuba-gear {
+      @extend .talent-image;
+      background-position-x: -250px;
+      &:hover {
+        background-position-y: 0;
+      }
+    }
+    .talent-image__lightning {
+      @extend .talent-image;
+      background-position-x: -300px;
+      &:hover {
+        background-position-y: 0;
+      }
+    }
+    .talent-image__skull {
+      @extend .talent-image;
+      background-position-x: -350px;
+      &:hover {
+        background-position-y: 0;
+      }
+    }
+  }
+}
+
+#talent-points-spent {
+  background-color:rgba(0,0,0,0.25);
+  border: 1px solid $dark-gray;
+  color: $link-blue;
+  font-size: 23px;
+  //line-height: 90px;
+  line-height: normal;
+  margin-bottom: 59px;
+  padding: 18px 20px;
+  text-align: center;
+  vertical-align: middle;
+  width: 176px;
+
+  span {
+    color: $white;
+    display: block;
+    line-height: normal;
+  }
+}

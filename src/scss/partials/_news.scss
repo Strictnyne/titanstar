@@ -1,0 +1,36 @@
+.news-container {
+  background: url('../../assets/images/news-bg.png');
+  border: 1px solid $dark-gray;
+  color: #CFCFCF;
+  margin-top: 10px;
+
+  .news-container__header {
+    background-color: $dark-gray;
+    border-top: 1px solid #272828;
+    padding: 0 10px;
+    line-height: 42px;
+    vertical-align: middle;
+
+    .half {
+      //line-height: normal;
+      vertical-align: middle;
+    }
+
+    .news-container__header--title {
+      color: $white;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .news-container__header--author {
+      color: #BABABA;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+
+  .news-container__content {
+    color: $light-gray;
+    font-size: 14px;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,218 @@
+@import "../_variables";
+@import "news";
+@import "talents";
+@import "navigation";
+
+/**
+  Table of contents
+  ------------------------
+  CS01 - Main Items
+  CS02 - Container Elements
+  CS03 - Social Elements
+  CS04 - Text Elements
+  CS05 - Float Elements
+  CS06 - Footer Elements
+
+/** CS01 Main Items
+ ===================== **/
+
+html, body {
+  background-color: $dark-blue;
+  color: $light-gray;
+  font-family: 'Open Sans', sans-serif;
+  margin: 28px auto;
+  width: 1000px;
+  max-width: 1000px;
+}
+
+header {
+  margin-bottom: 10px;
+  line-height: 48px;
+
+  .flex {
+    div {
+      display: inline-block;
+      vertical-align: middle;
+      line-height: normal;
+    }
+  }
+}
+
+input[type=submit] {
+  color: $white;
+  font-size: 13px;
+  font-weight: 600;
+  @include border-radius(5px);
+  border: 1px solid $gradient-light-blue;
+  @include linear-gradient($gradient-light-blue, $gradient-dark-blue);
+  padding: 5px 10px;
+  text-shadow: 1px 1px 1px $black;
+}
+
+input[type=text] {
+  @include border-radius(5px);
+  padding: 5px 10px;
+}
+
+@include placeholder {
+  color: #8b8b8b;
+  font-weight: 100;
+}
+
+a {
+  color: $link-blue;
+  text-decoration: none;
+}
+
+.flex {
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  display: table;
+
+  .fifth {
+    width: 20%;
+    display: table-cell;
+  }
+
+  .quarter {
+    width: 25%;
+    display: table-cell;
+  }
+
+  .half {
+    width: 50%;
+    display: table-cell;
+  }
+
+  .three-quarter {
+    width: 75%;
+    display: table-cell;
+  }
+
+  .full {
+    width: inherit;
+    display: table-cell;
+  }
+}
+
+.clearfix::after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+/** CS02 Container Elements
+ ===================== **/
+
+.menu-divider {
+  @include tri-linear-gradient(left, #1a222b, #283441, #1a222b);
+  border-top: 1px solid #2c333b;
+  height: 10px;
+}
+
+
+/** CS03 Social Elements
+ ===================== **/
+
+
+.social-btn {
+  @include border-radius(5px);
+  @include linear-gradient($gradient-light-blue, $gradient-dark-blue);
+  min-height: 27px;
+  max-width: 27px;
+  margin-right: 10px;
+
+  .twitter {
+    float: left;
+    width: 27px;
+    height: 27px;
+    background: url('../../assets/images/social-icons-sprite.png') 0px;
+  }
+
+  .facebook {
+    float: left;
+    width: 27px;
+    height: 27px;
+    background: url('../../assets/images/social-icons-sprite.png') 54px;
+  }
+
+  .youtube {
+    float: left;
+    width: 27px;
+    height: 27px;
+    background: url('../../assets/images/social-icons-sprite.png') 27px;
+  }
+}
+
+/** CS04 Text Elements
+ ===================== **/
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+
+/** CS05 Float Elements
+ ===================== **/
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+
+/** CS06 Footer Elements
+ ===================== **/
+footer {
+  background-color: $dark-gray;
+  //border: 1px solid $dark-gray;
+  border-top: 1px solid #252627;
+  color: #808080;
+  margin-top: 10px;
+  padding: 17px 19px;
+  line-height: 67px;
+
+  div:nth-child(1), div:nth-child(2) {
+    line-height: normal;
+    vertical-align: middle;
+  }
+
+  #social > div {
+    display: table-cell;
+    float:right;
+
+    .margin-right {
+      margin-right: 10px;
+    }
+  }
+
+  #lower-menu {
+    color: $white;
+    text-transform: uppercase;
+
+    span {
+      &:nth-child(4n+1):after,
+      &:nth-child(4n+2):after {
+        content: ' | ';
+      }
+    }
+    a{
+      color: $white;
+    }
+  }
+}
+
+#loader {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 999;
+}

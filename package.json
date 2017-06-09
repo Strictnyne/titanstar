@@ -1,0 +1,40 @@
+{
+  "name": "TitanStarLegends",
+  "version": "1.0.0",
+  "description": "",
+  "main": "templates/assets/js/app.js",
+  "scripts": {
+    "dev": "webpack -d --config webpack.dev.config",
+    "build": "webpack -p --config webpack.prod.config",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robert Blahut",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-react": "^6.22.0",
+    "babelify": "^7.3.0",
+    "css-loader": "^0.26.4",
+    "foundation-sites": "^6.3.1",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.1.8",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "css-loader": "^0.26.1",
+    "eslint": "^3.15.0",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-react": "^6.9.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.8",
+    "webpack": "^1.14.0"
+  }
+}

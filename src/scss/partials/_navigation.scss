@@ -1,0 +1,100 @@
+#nav-container {
+  background: repeating-linear-gradient(-45deg, #202123, #202123 1px, #1d1e20 6px);
+  border-top: 1px solid #2d2e2f;
+  height: 50px;
+  //padding: 7px 9px;
+
+  #menu {
+    color: $white;
+    font-size: 14px;
+    font-weight: 600;
+    list-style-type: none;
+    text-transform: uppercase;
+
+    .menu__item {
+      float: left;
+      padding: 6px 15px 0 9px;
+      border-right-width: 1px;
+      border-right-style: solid;
+      -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(black), to(rgba(0, 0, 0, 0))) 1 100%;
+      -webkit-border-image: -webkit-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+      -moz-border-image: -moz-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+      -o-border-image: -o-linear-gradient(black, rgba(0, 0, 0, 0)) 1 100%;
+      border-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0)) 1 100%;
+
+      &:hover {
+        background-color:rgba(0,0,0,0.25 );
+      }
+    }
+
+    .dropdown {
+      .submenu-content {
+        background-color: #3d3d3d;
+        top: 50px;
+        left: -81px;
+        max-height: 0;
+        max-width: 115px;
+        overflow: hidden;
+        position: relative;
+        -webkit-transition: max-height 0.2s;
+        -moz-transition: max-height 0.2s;
+        transition: max-height 0.2s;
+
+        .submenu__list--item {
+          border-bottom: 1px #2f2f2f solid;
+          padding: 3px;
+          &:last-child {
+            border: 0;
+          }
+        }
+      }
+
+      &:hover {
+        .submenu-content {
+          max-height: 200px;
+        }
+      }
+
+
+    }
+
+    div {
+      a {
+        color: $white;
+      }
+      .snowflakes {
+        width: 23px;
+        height: 23px;
+        margin-left: 36px;
+        background: url('../../assets/images/nav-icons-sprite.png') 0px 0px;
+      }
+
+      .magnets {
+        width: 23px;
+        height: 23px;
+        margin-left: 25px;
+        background: url('../../assets/images/nav-icons-sprite.png') 46px 0px;
+      }
+
+      .liquids {
+        width: 23px;
+        height: 23px;
+        margin-left: 16px;
+        background: url('../../assets/images/nav-icons-sprite.png') 23px;
+      }
+
+      .arrow-down {
+        width: 0;
+        height: 0;
+        margin-top: -12px;
+        margin-left: 59px;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 4px solid #646363;
+        position: absolute;
+        z-index: 999;
+      }
+    }
+
+  }
+}
