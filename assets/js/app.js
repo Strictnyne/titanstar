@@ -31387,7 +31387,6 @@
 			};
 	
 			_this2.handlePointsClicks = function () {
-				var current = _this2.state.points;
 				var max = _this2.state.pointsMax;
 				var talents_points = $('.--active').length;
 				var _this = _this2;
@@ -31400,6 +31399,8 @@
 	
 						if ($(this).attr('data-click') === 'enabled') {
 							$(event.target).addClass('--active');
+							$(event.target).parent().prev('li').addClass('link__active');
+	
 							talents_points = $('.--active').length;
 							_this.setState({ points: talents_points });
 	
@@ -31431,6 +31432,8 @@
 	
 						if (!$('div#' + _next).hasClass('--active')) {
 							$(event.target).removeClass('--active');
+							$('div#' + _next).attr('data-click', 'disabled');
+							$(event.target).parent().prev('li').removeClass('link__active');
 						} else {
 							if ($('div#' + _next).attr('id') == "talent-boat") {
 								$('div#talent-crown').removeClass('--active');
@@ -31503,42 +31506,42 @@
 									{ id: 'talents' },
 									_react2.default.createElement(
 										'li',
-										{ onLoad: this.handlePointsClicks, className: 'connector' },
+										{ onLoad: this.handlePointsClicks, className: 'link' },
 										_react2.default.createElement('div', { id: 'talent-stacks', className: 'talent-image__stacks', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
 										'li',
-										{ className: 'connector test' },
+										{ className: 'link' },
 										_react2.default.createElement('div', { id: 'talent-food', className: 'talent-image__food', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
 										'li',
-										{ className: 'connector' },
+										{ className: 'link' },
 										_react2.default.createElement('div', { id: 'talent-cake', className: 'talent-image__cake', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
 										'li',
-										{ className: 'connector' },
+										{ className: 'link' },
 										_react2.default.createElement('div', { id: 'talent-crown', className: 'talent-image__crown', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
 										'li',
-										{ className: 'connector' },
+										{ className: 'link' },
 										_react2.default.createElement('div', { id: 'talent-boat', className: 'talent-image__boat', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
 										'li',
-										{ className: 'connector' },
+										{ className: 'link' },
 										_react2.default.createElement('div', { id: 'talent-scuba-gear', className: 'talent-image__scuba-gear', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
 										'li',
-										{ className: 'connector' },
+										{ className: 'link' },
 										_react2.default.createElement('div', { id: 'talent-lightning', className: 'talent-image__lightning', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
 										'li',
-										{ className: 'connector' },
+										{ className: 'link' },
 										_react2.default.createElement('div', { id: 'talent-skull', className: 'talent-image__skull', 'data-click': 'disabled' })
 									)
 								)
@@ -31602,17 +31605,13 @@
 					"div",
 					{ id: "talent-points-spent" },
 					_react2.default.createElement(
-						"div",
+						"span",
 						null,
-						_react2.default.createElement(
-							"span",
-							null,
-							this.props.points,
-							" / ",
-							this.props.pointsMax
-						),
-						"Points Spent"
-					)
+						this.props.points,
+						" / ",
+						this.props.pointsMax
+					),
+					"Points Spent"
 				);
 			}
 		}]);

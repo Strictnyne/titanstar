@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 
 import PointsSpent from './points-spent.jsx';
 
@@ -11,6 +11,7 @@ class Talents extends React.Component {
 			pointsMax: 6
 		}
 	}
+
 	componentDidMount = () => {
 		this.handlePointsClicks();
 
@@ -35,7 +36,6 @@ class Talents extends React.Component {
 	}
 
 	handlePointsClicks = () => {
-		let current = this.state.points;
 		let max = this.state.pointsMax;
 		var talents_points = $('.--active').length;
 		var _this = this;
@@ -48,6 +48,8 @@ class Talents extends React.Component {
 
 				if($(this).attr('data-click') === 'enabled') {
 					$(event.target).addClass('--active');
+					$(event.target).parent().prev('li').addClass('link__active');
+
 					talents_points = $('.--active').length;
 					_this.setState({points: talents_points});
 
@@ -72,13 +74,15 @@ class Talents extends React.Component {
 										$(this).attr('data-click', 'enabled');
 									}
 								}
-							})
+							});
 						});
 					});
 				}
 
 				if(!$('div#' + _next).hasClass('--active')) {
 					$(event.target).removeClass('--active');
+					$('div#' + _next).attr('data-click', 'disabled');
+					$(event.target).parent().prev('li').removeClass('link__active');
 				}
 				else {
 					if($('div#' + _next).attr('id') == "talent-boat") {
@@ -124,28 +128,28 @@ class Talents extends React.Component {
 
 						<div className="no-right-click" style={styles.centerColumn}>
 							<ul id="talents">
-								<li onLoad={this.handlePointsClicks} className="connector">
+								<li onLoad={this.handlePointsClicks} className="link">
 									<div id="talent-stacks" className="talent-image__stacks" data-click="disabled"></div>
 								</li>
-								<li className="connector test">
+								<li className="link">
 									<div id="talent-food" className="talent-image__food" data-click="disabled"></div>
 								</li>
-								<li className="connector">
+								<li className="link">
 									<div id="talent-cake" className="talent-image__cake" data-click="disabled"></div>
 								</li>
-								<li className="connector">
+								<li className="link">
 									<div id="talent-crown" className="talent-image__crown" data-click="disabled"></div>
 								</li>
-								<li className="connector">
+								<li className="link">
 									<div id="talent-boat" className="talent-image__boat" data-click="disabled"></div>
 								</li>
-								<li className="connector">
+								<li className="link">
 									<div id="talent-scuba-gear" className="talent-image__scuba-gear" data-click="disabled"></div>
 								</li>
-								<li className="connector">
+								<li className="link">
 									<div id="talent-lightning" className="talent-image__lightning" data-click="disabled"></div>
 								</li>
-								<li className="connector">
+								<li className="link">
 									<div id="talent-skull" className="talent-image__skull" data-click="disabled"></div>
 								</li>
 							</ul>
