@@ -1,29 +1,25 @@
 import React, {Component} from "react";
-import ReactDOM from "react-dom";
 
 import PointsSpent from './points-spent.jsx';
-
-const _self = this;
 
 class Talents extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			points: '0',
-			pointsMax: '6'
+			points: 0,
+			pointsMax: 6
 		}
 	}
 	componentDidMount = () => {
 		this.handlePointsClicks();
-		this.handlePointsMaxed();
 
+		$('#talent-stacks').attr('data-click', 'enabled');
+		$('#talent-boat').attr('data-click', 'enabled');
 	}
 
 	componentDidUpdate = () => {
-		console.log("update");
-		this.handlePointsClicks();
-		// return false;
+		this.handlePointsMaxed();
 	}
 
 	handlePointsMaxed = () => {
@@ -31,41 +27,72 @@ class Talents extends React.Component {
 		let max = this.state.pointsMax;
 
 		if(current >= max) {
-			console.log("You cannot have more than 6 points");
-			var _this = $("#list li div").not("--active");
-			_this.each(function(i) {
-				console.log(i);
+			$('#talents li div').not( '.--active').each(function() {
+			}).each(function() {
+				$(this).attr('data-click', 'disabled');
 			});
-			document.getElementById('id').style.pointerEvents = 'none';
 		}
-
-		console.log('Maxed: ' + current);
 	}
 
 	handlePointsClicks = () => {
-		var talents_points = '';
+		let current = this.state.points;
+		let max = this.state.pointsMax;
+		var talents_points = $('.--active').length;
 		var _this = this;
 
 		$(document).ready(function() {
 			$('#talents li ').on('click',  'div', function(event) {
 				event.stopPropagation();
+				event.preventDefault();
+				var _next = $(event.target).parent().next('li').children().attr('id');
 
-				$(event.target).addClass('--active');
-				talents_points = $('.--active').length;
-				_this.setState({ points: talents_points });
+				if($(this).attr('data-click') === 'enabled') {
+					$(event.target).addClass('--active');
+					talents_points = $('.--active').length;
+					_this.setState({points: talents_points});
+
+					if(talents_points < max) {
+						$('div#' + _next).attr('data-click', 'enabled');
+					}
+				}
 			});
 
 			$('.no-right-click').bind('contextmenu', function(event) {
 				event.stopPropagation();
+				var _next = $(event.target).parent().next('li').children().attr('id');
 
-				$(event.target).removeClass('--active');
+				if(talents_points == max) {
+					$('#talents li div').each(function() {
+						$(this).not('.--active').each(function () {
+							var _prev = $(this).parent().prev('li').children().attr('id');
+
+							$(this).each(function() {
+								if($('div#' + _prev).hasClass('--active')) {
+									if($(this).parent().prev('li').children().hasClass('--active')) {
+										$(this).attr('data-click', 'enabled');
+									}
+								}
+							})
+						});
+					});
+				}
+
+				if(!$('div#' + _next).hasClass('--active')) {
+					$(event.target).removeClass('--active');
+				}
+				else {
+					if($('div#' + _next).attr('id') == "talent-boat") {
+						$('div#talent-crown').removeClass('--active');
+					}
+				}
+
 				talents_points = $('.--active').length;
 				_this.setState({ points: talents_points });
-				// this.handlePointsMaxed(talents_points);
 
 				return false;
 			});
 		});
+
 	}
 
     render() {
@@ -97,29 +124,29 @@ class Talents extends React.Component {
 
 						<div className="no-right-click" style={styles.centerColumn}>
 							<ul id="talents">
-								<li onLoad={this.handlePointsClicks}>
-									<div id="talent-stacks" className="talent-image__stacks"></div>
+								<li onLoad={this.handlePointsClicks} className="connector">
+									<div id="talent-stacks" className="talent-image__stacks" data-click="disabled"></div>
 								</li>
-								<li>
-									<div id="talent-food" className="talent-image__food"></div>
+								<li className="connector test">
+									<div id="talent-food" className="talent-image__food" data-click="disabled"></div>
 								</li>
-								<li>
-									<div id="talent-cake" className="talent-image__cake"></div>
+								<li className="connector">
+									<div id="talent-cake" className="talent-image__cake" data-click="disabled"></div>
 								</li>
-								<li>
-									<div id="talent-crown" className="talent-image__crown"></div>
+								<li className="connector">
+									<div id="talent-crown" className="talent-image__crown" data-click="disabled"></div>
 								</li>
-								<li>
-									<div id="talent-boat" className="talent-image__boat"></div>
+								<li className="connector">
+									<div id="talent-boat" className="talent-image__boat" data-click="disabled"></div>
 								</li>
-								<li>
-									<div id="talent-scuba-gear" className="talent-image__scuba-gear"></div>
+								<li className="connector">
+									<div id="talent-scuba-gear" className="talent-image__scuba-gear" data-click="disabled"></div>
 								</li>
-								<li>
-									<div id="talent-lightning" className="talent-image__lightning"></div>
+								<li className="connector">
+									<div id="talent-lightning" className="talent-image__lightning" data-click="disabled"></div>
 								</li>
-								<li>
-									<div id="talent-skull" className="talent-image__skull"></div>
+								<li className="connector">
+									<div id="talent-skull" className="talent-image__skull" data-click="disabled"></div>
 								</li>
 							</ul>
 						</div>

@@ -31332,7 +31332,7 @@
   \***************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -31343,10 +31343,6 @@
 	var _react = __webpack_require__(/*! react */ 298);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(/*! react-dom */ 333);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
 	var _pointsSpent = __webpack_require__(/*! ./points-spent.jsx */ 480);
 	
@@ -31360,8 +31356,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var _self = undefined;
-	
 	var Talents = function (_React$Component) {
 		_inherits(Talents, _React$Component);
 	
@@ -31372,13 +31366,13 @@
 	
 			_this2.componentDidMount = function () {
 				_this2.handlePointsClicks();
-				_this2.handlePointsMaxed();
+	
+				$('#talent-stacks').attr('data-click', 'enabled');
+				$('#talent-boat').attr('data-click', 'enabled');
 			};
 	
 			_this2.componentDidUpdate = function () {
-				console.log("update");
-				_this2.handlePointsClicks();
-				// return false;
+				_this2.handlePointsMaxed();
 			};
 	
 			_this2.handlePointsMaxed = function () {
@@ -31386,37 +31380,65 @@
 				var max = _this2.state.pointsMax;
 	
 				if (current >= max) {
-					console.log("You cannot have more than 6 points");
-					var _this = $("#list li div").not("--active");
-					_this.each(function (i) {
-						console.log(i);
+					$('#talents li div').not('.--active').each(function () {}).each(function () {
+						$(this).attr('data-click', 'disabled');
 					});
-					document.getElementById('id').style.pointerEvents = 'none';
 				}
-	
-				console.log('Maxed: ' + current);
 			};
 	
 			_this2.handlePointsClicks = function () {
-				var talents_points = '';
+				var current = _this2.state.points;
+				var max = _this2.state.pointsMax;
+				var talents_points = $('.--active').length;
 				var _this = _this2;
 	
 				$(document).ready(function () {
 					$('#talents li ').on('click', 'div', function (event) {
 						event.stopPropagation();
+						event.preventDefault();
+						var _next = $(event.target).parent().next('li').children().attr('id');
 	
-						$(event.target).addClass('--active');
-						talents_points = $('.--active').length;
-						_this.setState({ points: talents_points });
+						if ($(this).attr('data-click') === 'enabled') {
+							$(event.target).addClass('--active');
+							talents_points = $('.--active').length;
+							_this.setState({ points: talents_points });
+	
+							if (talents_points < max) {
+								$('div#' + _next).attr('data-click', 'enabled');
+							}
+						}
 					});
 	
 					$('.no-right-click').bind('contextmenu', function (event) {
 						event.stopPropagation();
+						var _next = $(event.target).parent().next('li').children().attr('id');
 	
-						$(event.target).removeClass('--active');
+						if (talents_points == max) {
+							$('#talents li div').each(function () {
+								$(this).not('.--active').each(function () {
+									var _prev = $(this).parent().prev('li').children().attr('id');
+	
+									$(this).each(function () {
+										if ($('div#' + _prev).hasClass('--active')) {
+											if ($(this).parent().prev('li').children().hasClass('--active')) {
+												$(this).attr('data-click', 'enabled');
+											}
+										}
+									});
+								});
+							});
+						}
+	
+						if (!$('div#' + _next).hasClass('--active')) {
+							$(event.target).removeClass('--active');
+						} else {
+							if ($('div#' + _next).attr('id') == "talent-boat") {
+								$('div#talent-crown').removeClass('--active');
+							}
+						}
+	
 						talents_points = $('.--active').length;
 						_this.setState({ points: talents_points });
-						// this.handlePointsMaxed(talents_points);
 	
 						return false;
 					});
@@ -31424,14 +31446,14 @@
 			};
 	
 			_this2.state = {
-				points: '0',
-				pointsMax: '6'
+				points: 0,
+				pointsMax: 6
 			};
 			return _this2;
 		}
 	
 		_createClass(Talents, [{
-			key: "render",
+			key: 'render',
 			value: function render() {
 				var styles = {
 					tableRow: {
@@ -31451,78 +31473,78 @@
 				};
 	
 				return _react2.default.createElement(
-					"div",
-					{ className: "flex talent-calc-container__content clearfix" },
+					'div',
+					{ className: 'flex talent-calc-container__content clearfix' },
 					_react2.default.createElement(
-						"div",
-						{ className: "full" },
+						'div',
+						{ className: 'full' },
 						_react2.default.createElement(
-							"div",
+							'div',
 							{ style: styles.tableRow },
 							_react2.default.createElement(
-								"div",
-								{ className: "talent-path", style: styles.leftColumn },
+								'div',
+								{ className: 'talent-path', style: styles.leftColumn },
 								_react2.default.createElement(
-									"div",
-									{ className: "talent-path__1" },
-									"Talent Path 1"
+									'div',
+									{ className: 'talent-path__1' },
+									'Talent Path 1'
 								),
 								_react2.default.createElement(
-									"div",
-									{ className: "talent-path__2" },
-									"Talent Path 2"
+									'div',
+									{ className: 'talent-path__2' },
+									'Talent Path 2'
 								)
 							),
 							_react2.default.createElement(
-								"div",
-								{ className: "no-right-click", style: styles.centerColumn },
+								'div',
+								{ className: 'no-right-click', style: styles.centerColumn },
 								_react2.default.createElement(
-									"ul",
-									{ id: "talents" },
+									'ul',
+									{ id: 'talents' },
 									_react2.default.createElement(
-										"li",
-										{ onLoad: this.handlePointsClicks },
-										_react2.default.createElement("div", { id: "talent-stacks", className: "talent-image__stacks" })
+										'li',
+										{ onLoad: this.handlePointsClicks, className: 'connector' },
+										_react2.default.createElement('div', { id: 'talent-stacks', className: 'talent-image__stacks', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement("div", { id: "talent-food", className: "talent-image__food" })
+										'li',
+										{ className: 'connector test' },
+										_react2.default.createElement('div', { id: 'talent-food', className: 'talent-image__food', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement("div", { id: "talent-cake", className: "talent-image__cake" })
+										'li',
+										{ className: 'connector' },
+										_react2.default.createElement('div', { id: 'talent-cake', className: 'talent-image__cake', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement("div", { id: "talent-crown", className: "talent-image__crown" })
+										'li',
+										{ className: 'connector' },
+										_react2.default.createElement('div', { id: 'talent-crown', className: 'talent-image__crown', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement("div", { id: "talent-boat", className: "talent-image__boat" })
+										'li',
+										{ className: 'connector' },
+										_react2.default.createElement('div', { id: 'talent-boat', className: 'talent-image__boat', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement("div", { id: "talent-scuba-gear", className: "talent-image__scuba-gear" })
+										'li',
+										{ className: 'connector' },
+										_react2.default.createElement('div', { id: 'talent-scuba-gear', className: 'talent-image__scuba-gear', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement("div", { id: "talent-lightning", className: "talent-image__lightning" })
+										'li',
+										{ className: 'connector' },
+										_react2.default.createElement('div', { id: 'talent-lightning', className: 'talent-image__lightning', 'data-click': 'disabled' })
 									),
 									_react2.default.createElement(
-										"li",
-										null,
-										_react2.default.createElement("div", { id: "talent-skull", className: "talent-image__skull" })
+										'li',
+										{ className: 'connector' },
+										_react2.default.createElement('div', { id: 'talent-skull', className: 'talent-image__skull', 'data-click': 'disabled' })
 									)
 								)
 							),
 							_react2.default.createElement(
-								"div",
+								'div',
 								{ style: styles.rightColumn },
 								_react2.default.createElement(_pointsSpent2.default, { points: this.state.points, pointsMax: this.state.pointsMax })
 							)
